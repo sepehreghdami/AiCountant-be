@@ -408,3 +408,18 @@ Item = catalog
 CounterParty = role
 
 Person = human
+
+
+
+===================================================================================================================================
+install poetry command:
+
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
+
+poetry init
+
+poetry add --group dev pytest ruff mypy httpx
+
+
+ C:\Users\Asus\AppData\Local\pypoetry\Cache\virtualenvs\aicountant-be-Kk8vlHwv-py3.14\Scripts\Activate.ps1
+==================================================================================================================================
