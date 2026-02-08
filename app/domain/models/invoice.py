@@ -22,6 +22,11 @@ class Invoice(Base, UUIDMixin, TimestampMixin):
         ForeignKey("counter_parties.id"),
         index=True,
     )
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
 
     issue_date: Mapped[date] = mapped_column(Date)
     due_date: Mapped[date | None] = mapped_column(Date)
@@ -34,3 +39,4 @@ class Invoice(Base, UUIDMixin, TimestampMixin):
         back_populates="invoice",
         cascade="all, delete-orphan",
     )
+    business: Mapped["Business"] = relationship(back_populates="invoices")

@@ -11,10 +11,15 @@ class LedgerTransaction(Base, UUIDMixin, TimestampMixin):
         ForeignKey("invoices.id"),
         index=True,
     )
-
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
     description: Mapped[str] = mapped_column(String)
 
     entries: Mapped[list["LedgerEntry"]] = relationship(
         back_populates="transaction",
         cascade="all, delete-orphan",
     )
+    business: Mapped["Business"] = relationship(back_populates="ledger_transactions")

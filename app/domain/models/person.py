@@ -10,6 +10,11 @@ class Person(Base, UUIDMixin):
         back_populates="person",
         cascade="all, delete-orphan",
     )
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
 
     phones: Mapped[list["PersonPhone"]] = relationship(
         back_populates="person",
@@ -20,3 +25,4 @@ class Person(Base, UUIDMixin):
         back_populates="person",
         cascade="all, delete-orphan",
     )
+    business: Mapped["Business"] = relationship(back_populates="persons")

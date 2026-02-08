@@ -11,6 +11,11 @@ class InvoiceLine(Base, UUIDMixin):
         ForeignKey("invoices.id", ondelete="CASCADE"),
         index=True,
     )
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
 
     item_id: Mapped[str | None] = mapped_column(ForeignKey("items.id"))
     description: Mapped[str] = mapped_column(String)
@@ -21,3 +26,4 @@ class InvoiceLine(Base, UUIDMixin):
     line_total: Mapped[float] = mapped_column(Numeric(12, 2))
 
     invoice: Mapped["Invoice"] = relationship(back_populates="lines")
+    business: Mapped["Business"] = relationship(back_populates="invoice_lines")

@@ -17,6 +17,11 @@ class LedgerEntry(Base, UUIDMixin):
         ForeignKey("ledger_transactions.id", ondelete="CASCADE"),
         index=True,
     )
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
 
     account: Mapped[str] = mapped_column(String)
     amount: Mapped[float] = mapped_column(Numeric(14, 2))
@@ -26,3 +31,4 @@ class LedgerEntry(Base, UUIDMixin):
     quantity: Mapped[float | None] = mapped_column(Numeric(12, 4))
 
     transaction: Mapped["LedgerTransaction"] = relationship(back_populates="entries")
+    business: Mapped["Business"] = relationship(back_populates="ledger_entries")

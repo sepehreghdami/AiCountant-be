@@ -19,6 +19,11 @@ class CounterParty(Base, UUIDMixin, TimestampMixin):
         index=True,
         nullable=False,
     )
+    business_id: Mapped[str] = mapped_column(
+        ForeignKey("businesses.id", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
+    )
 
     name: Mapped[str] = mapped_column(String, nullable=False)
     normalized_name: Mapped[str] = mapped_column(String, index=True)
@@ -28,3 +33,5 @@ class CounterParty(Base, UUIDMixin, TimestampMixin):
 
     person: Mapped["Person"] = relationship(back_populates="counter_parties")
     invoices: Mapped[list["Invoice"]] = relationship(back_populates="counter_party")
+    business: Mapped["Business"] = relationship(back_populates="counter_parties")
+
