@@ -1,5 +1,5 @@
 
-from typing import Enum
+from enum import Enum
 
 class Direction(str, Enum):
     debit = "debit"

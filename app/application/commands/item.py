@@ -5,7 +5,7 @@ from app.application.commands.common_types import ItemType
 
 class CreateItemPayload(BaseModel):
     name: str
-    type: ItemType = ItemType
+    type: ItemType
     category: Optional[str] = None
     unit: Optional[str] = None
     default_unit_price: Optional[condecimal(decimal_places=2, max_digits=18)] = None

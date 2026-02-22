@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.dependencies import engine
 from app.dependencies import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
+from app.api.routes import message
 
 
 
@@ -26,3 +27,4 @@ app = FastAPI()
 #     allow_headers=["*"],
 # )
 
+app.include_router(message.router)
