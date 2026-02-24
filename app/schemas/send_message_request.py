@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
 from uuid import UUID
-from datetime import datetime
 
 
 
@@ -10,3 +9,4 @@ class SendMessageRequest(BaseModel):
     tenant_id: UUID
     actor_id: Optional[UUID] = None
     source_text: Optional[str] = None
+
